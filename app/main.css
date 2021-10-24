@@ -3,11 +3,14 @@
 :root {
   /* Primary */
   --color: red;
-  --Scissors-Gradient: linear-gradient(to right, #f6efd2, #cead78);
-  --Paper-Gradient: hsl(230, 89%, 62%) to hsl(230, 89%, 65%);
-  --Rock-Gradient: hsl(349, 71%, 52%) to hsl(349, 70%, 56%);
-  --Lizard-Gradient: hsl(261, 73%, 60%) to hsl(261, 72%, 63%);
-  --Cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
+  --Scissors-Gradient: linear-gradient(to bottom, #f6efd2, #cead78);
+  --Paper-Gradient: linear-gradient(to bottom, hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+  --Rock-Gradient: linear-gradient(to bottom, hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+
+  /* static colors */
+  --Scissors: #cead78;
+  --Paper: hsl(230, 89%, 62%);
+  --Rock: hsl(349, 71%, 52%);
 
   /* Neutral */
   --Dark-Text: hsl(229, 25%, 31%);
@@ -101,6 +104,12 @@ body {
   background-position: center;
   background-size: 40%;
   height: 500px;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 /* game-elements */
@@ -108,25 +117,52 @@ body {
   cursor: pointer;
   width: 150px;
   height: 150px;
-  border: 10px solid orange;
-  /* box-shadow: inset 0em 1em black, 1px 15px 1px blue; */
   border-radius: 50%;
   background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3); */
 }
 
-.paper {
+.game-item div {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-position: center;
+  box-shadow: inset 0px 7px 0px #b8bdd1;
+}
+
+.paper div {
   background-image: url("images/icon-paper.svg");
 }
 
-.scissors {
+.scissors div {
   background-image: url("images/icon-scissors.svg");
 }
 
-.rock {
+.rock div {
   background-image: url("images/icon-rock.svg");
+}
+
+.paper {
+  background: var(--Paper-Gradient);
+  box-shadow: 0px 7px 0px #2945c0;
+}
+
+.scissors {
+  background: var(--Scissors-Gradient);
+  box-shadow: 0px 7px 0px #c76c1b;
+}
+
+.rock {
+  background: var(--Rock-Gradient);
+  box-shadow: 0px 7px 0px #9a1832;
 }
 
 .paper-start {
@@ -161,6 +197,7 @@ body {
   height: 500px;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
 }
 
 .play-again-button {
@@ -198,8 +235,80 @@ body {
 }
 
 .scaled {
-  width: 200px;
-  height: 200px;
+  transform: scale(1.3);
+}
+
+.game-item.scaled:nth-child(1):before {
+  content: "YOU PICKED";
+  position: absolute;
+  top: -65px;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.game-item.scaled:nth-child(3):before,
+.waiting::before {
+  content: "THE HOUSE PICKED";
+  position: absolute;
+  top: -65px;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.rules-btn {
+  cursor: pointer;
+  width: 110px;
+  height: 40px;
+  background: transparent;
+  border: 0.5px solid #fff;
+  border-radius: 7px;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 25px;
+}
+
+.rules-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rules {
+  background: #fff;
+  border-radius: 10px;
+}
+
+.rules img {
+  margin: 20px;
+}
+
+.rules-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rules-header h2 {
+  margin: 20px;
+  font-size: 2em;
+  color: var(--Dark-Text);
+}
+.rules-header div {
+  cursor: pointer;
+  margin: 20px;
+  width: 20px;
+  height: 20px;
+  background: url("./images/icon-close.svg");
 }
 
 /* Dots Loading Animation */
@@ -277,6 +386,107 @@ body {
   }
 }
 
-@media (max-width: 1125px) {
+@media (max-width: 721px) {
   /* - Mobile: 375px */
+  .container {
+    width: 375px;
+  }
+
+  .tablo {
+    width: 80%;
+  }
+
+  .game-name {
+    height: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .game-name img {
+    width: 70%;
+  }
+
+  .score {
+    height: auto;
+    width: 40%;
+  }
+
+  .score span {
+    font-size: 12px;
+  }
+
+  .ammount {
+    font-size: 2.5em;
+  }
+
+  .elements {
+    width: 375px;
+    background-size: 60%;
+  }
+
+  .game-item {
+    width: 125px;
+    height: 125px;
+  }
+
+  .game-item div {
+    width: 100px;
+    height: 100px;
+  }
+
+  .paper-start {
+    position: absolute;
+    left: 45px;
+    top: 90px;
+  }
+
+  .scissors-start {
+    position: absolute;
+    top: 90px;
+    right: 45px;
+  }
+
+  .rock-start {
+    position: absolute;
+    bottom: 140px;
+    left: 125px;
+  }
+
+  .rules-btn {
+    position: relative;
+  }
+
+  .game {
+    position: relative;
+    width: 375px;
+    justify-content: space-evenly;
+  }
+
+  .waiting {
+    width: 125px;
+    height: 125px;
+  }
+
+  .visible {
+    position: absolute;
+    bottom: 35px;
+  }
+
+  .scaled {
+    transform: scale(1);
+  }
+
+  .game-item.scaled:nth-child(1):before {
+    content: "YOU PICKED";
+    position: absolute;
+    top: -65px;
+    font-size: 1.2em;
+    color: #fff;
+  }
+
+  .game-item.scaled:nth-child(1):before,
+  .game-item.scaled:nth-child(3):before,
+  .waiting::before {
+    font-size: 1em;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useContext, useRef } from "react"
 import { useImmer } from "use-immer"
 import { mapper } from "../scripts/mapper"
 
@@ -10,6 +10,7 @@ import StateContext from "../StateContext"
 import DispatchContext from "../DispatchContext"
 
 function PlayedElements() {
+  const gameEl = useRef(null)
   const appDispatch = useContext(DispatchContext)
   const appState = useContext(StateContext)
   console.log(appState)
@@ -35,7 +36,10 @@ function PlayedElements() {
   }, [])
 
   function buttonHandler() {
-    appDispatch({ type: "playAgain" })
+    gameEl.current.classList.add("hidden")
+    setTimeout(() => {
+      appDispatch({ type: "playAgain" })
+    }, 300)
   }
 
   function resultMapper(result) {
@@ -48,8 +52,10 @@ function PlayedElements() {
   }
 
   return (
-    <div className="game">
-      <div id={appState.userMove} className={"game-item " + mapper(appState.userMove) + " scaled"}></div>
+    <div className="game" ref={gameEl}>
+      <div id={appState.userMove} className={"game-item " + mapper(appState.userMove) + " scaled"}>
+        <div></div>
+      </div>
       <div className={"play-again-button " + (state.playAgainButton ? "visible" : "")}>
         <span>{appState.draw ? "DRAW" : resultMapper(appState.win)}</span>
         <button onClick={buttonHandler}>PLAY AGAIN</button>
@@ -59,7 +65,9 @@ function PlayedElements() {
           <Loading />
         </div>
       ) : (
-        <div id={appState.computerMove} className={"game-item " + mapper(appState.computerMove) + " scaled"}></div>
+        <div id={appState.computerMove} className={"game-item " + mapper(appState.computerMove) + " scaled"}>
+          <div></div>
+        </div>
       )}
     </div>
   )
