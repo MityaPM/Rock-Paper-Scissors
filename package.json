@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve",
+    "webpackBuild": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +25,11 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "dotenv-webpack": "^7.0.3",
+    "fs-extra": "^10.0.0",
+    "html-webpack-harddisk-plugin": "^2.0.0",
+    "html-webpack-plugin": "^5.4.0",
     "immer": "^9.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
