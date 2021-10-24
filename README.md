@@ -25,12 +25,12 @@ Users should be able to:
 
 ### Screenshot
 
-![http://skrinshoter.ru/s/241021/m5ruEbD2](./screenshot.jpg)
+http://skrinshoter.ru/s/241021/m5ruEbD2
 
 ### Links
 
 - Solution URL: [https://github.com/MityaPM/Rock-Paper-Scissors](https://github.com/MityaPM/Rock-Paper-Scissors)
-- Live Site URL: [https://cranky-mahavira-da2f45.netlify.app/](https://app.netlify.com/sites/cranky-mahavira-da2f45/overview)
+- Live Site URL: [https://cranky-mahavira-da2f45.netlify.app/](https://cranky-mahavira-da2f45.netlify.app/)
 
 ## My process
 
